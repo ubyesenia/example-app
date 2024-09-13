@@ -41,7 +41,10 @@ Route::get('cursos/{curso?}', [CursoController::class, 'show']);*/
 
 Route::controller(CursoController::class)->group(function(){
     
-Route::get('cursos', 'index');
-Route::get('cursos/create', 'create');
-Route::get('cursos/{curso?}', 'show');
+Route::get('cursos', action: 'index')->name('cursos.index');//Se recomienda colocar un nombre a cada ruta 
+Route::get('cursos/create', 'create')->name('cursos.create');//y hacer referencia a este nombre en los llamados a la ruta
+Route::post('cursos', 'store')->name('cursos.store');
+Route::get('cursos/{id}', 'show')->name('cursos.show');
+Route::get('cursos/{curso}/edit', 'edit')->name('cursos.edit');
+Route::put('cursos/{curso}', 'update')->name('cursos.update');//Laravel recomienda que el método a utilizar para actualizar info sea el PUT
 });

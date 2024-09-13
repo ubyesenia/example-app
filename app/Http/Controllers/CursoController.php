@@ -12,7 +12,7 @@ class CursoController extends Controller
         //return 'Esta es la página de cursos';
         //return view('cursos.index');
         //$cursos = Curso::all();
-        $cursos = Curso::paginate();
+        $cursos = Curso::orderByDesc('id')->paginate();
         //return $cursos;
         return view('cursos.index', compact('cursos'));
     }
@@ -23,9 +23,38 @@ class CursoController extends Controller
         return view('cursos.create');
     }
 
-    public function show($curso)
+    public function store(Request $solicitud)
     {
-        //return 'Bienvenido al curso '.$curso;
-        return view('cursos.show', ['curso' => $curso]);
+        $curso = new Curso();
+        $curso->name = $solicitud->name;
+        $curso->description = $solicitud->description;
+        $curso->category = $solicitud->category;
+        $curso->save();
+
+        return redirect()->route('cursos.show', $curso->id);//Se puede enviar el objeto $curso sin especificar el campo id 
+
+    }
+
+    public function show($id)//$id es la variable que recibe por parámetro en la ruta correspondiente en el archivo de rutas web
+    {
+        $curso = Curso::find($id);
+        return view('cursos.show', compact('curso'));//curso es el nombre de la variable $curso sin el $
     } 
+
+    public function edit(Curso $curso)
+    {
+        return view('cursos.edit', compact('curso'));      
+    } 
+
+    public function update(Curso $curso, Request $solicitud)
+    {
+         //return $solicitud->all();
+        $curso->name = $solicitud->name;
+        $curso->description = $solicitud->description;
+        $curso->category = $solicitud->category;
+        //return $curso;
+        $curso->save();
+
+        return redirect()->route('cursos.show', $curso->id);
+    }
 }

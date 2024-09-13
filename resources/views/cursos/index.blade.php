@@ -2,9 +2,14 @@
 @section('title','Cursos Principal')
 @section('content')
     <h1>Esta es la página de cursos</h1>
+    <a href="{{route('cursos.create')}}">Crear curso</a>
     <ul>
         @foreach ($cursos as $registro)
-            <li>{{$registro->name}}</li>          
+            <li>
+                <a href="{{route('cursos.show', $registro->id)}}">{{$registro->name}}</a>
+            </li>          
         @endforeach
     </ul>
+
+    {{$cursos->links()}}
 @endsection
