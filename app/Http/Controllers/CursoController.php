@@ -12,7 +12,7 @@ class CursoController extends Controller
         //return 'Esta es la página de cursos';
         //return view('cursos.index');
         //$cursos = Curso::all();
-        $cursos = Curso::orderByDesc('id')->paginate();
+        $cursos = Curso::orderBy('id','desc')->paginate();
         //return $cursos;
         return view('cursos.index', compact('cursos'));
     }
@@ -25,6 +25,11 @@ class CursoController extends Controller
 
     public function store(Request $solicitud)
     {
+        $solicitud->validate([
+            'name' => 'Required|min:3', 
+            'description' => 'Required', 
+            'category' => 'Required']);
+
         $curso = new Curso();
         $curso->name = $solicitud->name;
         $curso->description = $solicitud->description;
@@ -48,6 +53,11 @@ class CursoController extends Controller
 
     public function update(Curso $curso, Request $solicitud)
     {
+        $solicitud->validate([
+            'name' => 'Required|min:3', 
+            'description' => 'Required', 
+            'category' => 'Required']);
+
          //return $solicitud->all();
         $curso->name = $solicitud->name;
         $curso->description = $solicitud->description;
