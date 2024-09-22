@@ -26,11 +26,7 @@ class CursoController extends Controller
 
     public function store(StoreCurso $solicitud)
     {
-        $curso = new Curso();
-        $curso->name = $solicitud->name;
-        $curso->description = $solicitud->description;
-        $curso->category = $solicitud->category;
-        $curso->save();
+        $curso = Curso::create($solicitud->all());
 
         return redirect()->route('cursos.show', $curso->id);//Se puede enviar el objeto $curso sin especificar el campo id 
 
@@ -49,10 +45,7 @@ class CursoController extends Controller
 
     public function update(Curso $curso, StoreCurso $solicitud)
     {
-        $curso->name = $solicitud->name;
-        $curso->description = $solicitud->description;
-        $curso->category = $solicitud->category;
-        $curso->save();
+        $curso->update($solicitud->all());
 
         return redirect()->route('cursos.show', $curso->id);
     }
