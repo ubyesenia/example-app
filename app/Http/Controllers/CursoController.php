@@ -47,18 +47,11 @@ class CursoController extends Controller
         return view('cursos.edit', compact('curso'));      
     } 
 
-    public function update(Curso $curso, Request $solicitud)
+    public function update(Curso $curso, StoreCurso $solicitud)
     {
-        $solicitud->validate([
-            'name' => 'Required|min:3', 
-            'description' => 'Required', 
-            'category' => 'Required']);
-
-         //return $solicitud->all();
         $curso->name = $solicitud->name;
         $curso->description = $solicitud->description;
         $curso->category = $solicitud->category;
-        //return $curso;
         $curso->save();
 
         return redirect()->route('cursos.show', $curso->id);
