@@ -7,7 +7,7 @@
         <!--Agrega un token al formulario para que no expire la página ---Agrega una medida de Seguridad al formulario-->
         @csrf
 
-        <!--Esta directiva a Laravel que el método con el que se va a manejar el form es con el PUT y buscará la ruta correspondiente en el archivo de rutas-->
+        <!--Esta directiva indica a Laravel que el método con el que se va a manejar el form es con el PUT y buscará la ruta correspondiente en el archivo de rutas-->
         @method('put')
 
         <label>Editar Nombre:

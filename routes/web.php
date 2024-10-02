@@ -47,4 +47,5 @@ Route::post('cursos', 'store')->name('cursos.store');
 Route::get('cursos/{id}', 'show')->name('cursos.show');
 Route::get('cursos/{curso}/edit', 'edit')->name('cursos.edit');
 Route::put('cursos/{curso}', 'update')->name('cursos.update');//Laravel recomienda que el método a utilizar para actualizar info sea el PUT
+Route::delete('cursos/{curso}', action: 'destroy')->name('cursos.destroy');//Laravel recomienda colocar el nombre destroy a la función que maejará la eliminación
 });
