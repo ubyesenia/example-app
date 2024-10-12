@@ -39,7 +39,7 @@ Route::get('cursos/{curso?}', function ($curso=null){
 Route::get('cursos/create', [CursoController::class, 'create']);
 Route::get('cursos/{curso?}', [CursoController::class, 'show']);*/
 
-Route::controller(CursoController::class)->group(function(){
+/*Route::controller(CursoController::class)->group(function(){
     
 Route::get('cursos', action: 'index')->name('cursos.index');//Se recomienda colocar un nombre a cada ruta 
 Route::get('cursos/create', 'create')->name('cursos.create');//y hacer referencia a este nombre en los llamados a la ruta
@@ -48,4 +48,6 @@ Route::get('cursos/{id}', 'show')->name('cursos.show');
 Route::get('cursos/{curso}/edit', 'edit')->name('cursos.edit');
 Route::put('cursos/{curso}', 'update')->name('cursos.update');//Laravel recomienda que el método a utilizar para actualizar info sea el PUT
 Route::delete('cursos/{curso}', action: 'destroy')->name('cursos.destroy');//Laravel recomienda colocar el nombre destroy a la función que maejará la eliminación
-});
+});*/
+
+Route::resource('cursos', CursoController::class);
