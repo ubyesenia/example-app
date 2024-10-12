@@ -18,6 +18,19 @@
         @enderror
 
         <br><br>
+
+        <label>Ingresar Slug:
+            <br>
+              <input type="text" name='slug' value="{{old('slug')}}">
+        </label>
+
+        @error('slug')
+        <br>
+            <span>*{{$message}}</span>
+        @enderror
+
+        <br><br>
+
         <label>Ingresar Descripción:
             <br>
               <textarea name="description" rows="5">{{old('description')}}</textarea>

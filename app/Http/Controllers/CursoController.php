@@ -28,13 +28,13 @@ class CursoController extends Controller
     {
         $curso = Curso::create($solicitud->all());
 
-        return redirect()->route('cursos.show', $curso->id);//Se puede enviar el objeto $curso sin especificar el campo id 
+        return redirect()->route('cursos.show', $curso);//Se puede enviar el objeto $curso sin especificar el campo id 
 
     }
 
-    public function show($id)//$id es la variable que recibe por parámetro en la ruta correspondiente en el archivo de rutas web
+    public function show(Curso $curso)//$id es la variable que recibe por parámetro en la ruta correspondiente en el archivo de rutas web
     {
-        $curso = Curso::find($id);
+        //$curso = Curso::find($curso);
         return view('cursos.show', compact('curso'));//curso es el nombre de la variable $curso sin el $
     } 
 
@@ -47,7 +47,7 @@ class CursoController extends Controller
     {
         $curso->update($solicitud->all());
 
-        return redirect()->route('cursos.show', $curso->id);
+        return redirect()->route('cursos.show', $curso);
     }
 
     public function destroy(Curso $curso)

@@ -6,7 +6,9 @@
     <ul>
         @foreach ($cursos as $registro)
             <li>
-                <a href="{{route('cursos.show', $registro->id)}}">{{$registro->name}}</a>
+                <a href="{{route('cursos.show', $registro)}}">
+                    {{$registro->name}}
+                </a>
             </li>          
         @endforeach
     </ul>
